@@ -90,7 +90,8 @@ $(".card .list-group").sortable(
       text: text,
       date: date
       });
-      
+    });
+
     // trim down list's ID to match object property
     var arrName= $(this)
     .attr("id")
@@ -99,9 +100,11 @@ $(".card .list-group").sortable(
     // update array on tasks object and save
     tasks[arrName]= tempArr;
     saveTasks();  
-    });
-    console.log(tempArr);
-  }  
+    },
+    stop: function(event) {
+      $(this).removeClass("dropover");
+    }
+    
 });
 
 $("#trash").droppable({
